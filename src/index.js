@@ -5,14 +5,19 @@ const container = document.getElementById('svgContainer');
 const svgNS = 'http://www.w3.org/2000/svg';
 const svg = document.createElementNS(svgNS, 'svg');
 
-const width = '740';
+const width = '800';
 const height = '500';
 const deltaR = document.getElementById('delta');
 const angleR = document.getElementById('angle');
+const deltaRInc = document.getElementById('deltaInc');
+const angleRInc = document.getElementById('angleInc');
+const selectTiling = document.getElementById('tiling');
+const elementArray = [deltaR, angleR, deltaRInc, angleRInc];
 
 svg.setAttributeNS(null, "width", width + "px");
 svg.setAttributeNS(null, "height", height + "px");
 svg.setAttributeNS(null, "id", "starPattern");
+
 
 
 // задание начальных состояний
@@ -21,7 +26,7 @@ let polygons = [];
 
 function squareTiling() {
   let inc = 100;
-  for (let x = 0; x < width - inc / 2; x += inc) {
+  for (let x = 0; x < width; x += inc) {
     for (let y = 0; y < height; y += inc) {
       let poly = new Polygon(4);
       poly.addVertex(x, y);
@@ -34,7 +39,7 @@ function squareTiling() {
   }
 }
 
-// squareTiling();
+squareTiling();
 
 function hexTiling() {
   var hexTiles = new HexagonalTiling(60);
@@ -42,13 +47,26 @@ function hexTiling() {
   polygons = hexTiles.polys;
 }
 
-hexTiling();
+// hexTiling();
 
 
-deltaR.addEventListener('mousemove', function () {
-  drawSVGhankins();
+
+
+elementArray.forEach((elem)=> {
+  elem.addEventListener('mousemove', () => {
+    drawSVGhankins();
+  })
 })
-angleR.addEventListener('mousemove', function () {
+
+selectTiling.addEventListener('change', () => {
+  let elements = [];
+  if (selectTiling.value == "square") squareTiling();
+  else if (selectTiling.value == "hex") hexTiling();
+  elements = Array.prototype.slice.call(svg.childNodes);
+  for (let i = 0; i < elements.length; i++) {
+    elements[i].remove();
+  }
+  drawSVGGrid();
   drawSVGhankins();
 })
 
@@ -73,10 +91,14 @@ function drawSVGGrid() { // creating grid with polygons and lines
 
 drawSVGGrid();
 
+
+
 function drawSVGhankins() {
+  let deltainc = 0;
+  let angleinc = 0;
   polygons.forEach((poly, i) => {
-    delta = Number(deltaR.value);
-    angle = Math.PI / angleR.value;
+    delta = Number(deltaR.value) + deltainc;
+    angle = Math.PI / angleR.value + angleinc;
     const g = document.getElementsByTagName('g')[i];
     const lines = Array.prototype.slice.call(g.childNodes).slice(1);
     let hankinsCoord = poly.getHankins();
@@ -88,6 +110,8 @@ function drawSVGhankins() {
       lines[i].setAttribute('y2', hankinsCoord[count-1]);
       count +=4
     }
+    deltainc += Number(deltaRInc.value);
+    angleinc += Number(angleRInc.value);
   });
 }
 

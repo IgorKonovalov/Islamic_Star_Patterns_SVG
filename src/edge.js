@@ -25,6 +25,7 @@ function Edge(a, b) { // side of the polygon
     v1 = v1.setMagnitude(1); // normalize vectors
     v2 = v2.setMagnitude(1);
 
+    if (angle > 20) angle = 20;
 
     v1 = v1.rotate(-angle);
     v2 = v2.rotate(angle);

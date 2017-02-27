@@ -22,12 +22,6 @@ function Polygon(sides) {
     this.edges.push(edge);
   }
 
-  this.hankin = function() {
-    for (let i = 0; i < this.edges.length; i++) {
-      this.edges[i].hankin(this.interiorAngle);
-    }
-  }
-
   this.getPolygonPoints = function() {
     let points = [];
     for (let i = 0; i < this.edges.length; i++) {
@@ -52,11 +46,5 @@ function Polygon(sides) {
       hankins.push(h2.end.y);
     }
     return hankins;
-  }
-
-  this.show = function() {
-    for (let i = 0; i < this.edges.length; i++) {
-      this.edges[i].show();
-    }
   }
 }

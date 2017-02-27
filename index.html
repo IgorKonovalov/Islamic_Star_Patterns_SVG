@@ -11,9 +11,16 @@
   <h1>SVG</h1>
   <span>delta: </span><input type="range" id="delta" name="" value="10" min="0" max="50" step="1">
   <span>angle: </span><input type="range" id="angle" name="" value="2.3" min="1.8" max="20" step="0.01">
+  <span>deltainc: </span><input type="range" id="deltaInc" name="" value="0" min="-0.5" max="0.5" step="0.01">
+  <span>angleinc: </span><input type="range" id="angleInc" name="" value="0" min="-0.01" max="0.01" step="0.0001">
   <br>
 
   <div id="svgContainer"></div>
+  <select class="" id="tiling">
+    <option value="square">Square</option>
+    <option value="hex">Hexagon</option>
+  </select>
+
   <script src="src/hextiling.js"></script>
   <script src="src/functions.js"></script>
   <script src="src/edge.js"></script>
