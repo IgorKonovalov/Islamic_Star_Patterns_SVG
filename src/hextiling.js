@@ -23,9 +23,9 @@ function HexagonalTiling(r) {
     let w = (Math.sqrt(3) / 2) * h;
     let inc = 3 * (h / 4);
     let row = 0;
-    for (let y = -h / 2; y < 500 + h/2; y += inc) {
-      let startX = ((row % 2) == 0) ? -w : -w / 2;
-      for (let x = startX; x < 740; x += w) {
+    for (let x = -h / 2; x < 750 + h/2; x += inc) {
+      let startY = ((row % 2) == 0) ? -w : -w / 2;
+      for (let y = startY; y < 540; y += w) {
         this.buildCell(x, y);
       }
       row++;
