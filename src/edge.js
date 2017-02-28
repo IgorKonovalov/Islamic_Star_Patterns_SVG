@@ -25,13 +25,13 @@ function Edge(a, b) { // side of the polygon
     v1 = v1.setMagnitude(1); // normalize vectors
     v2 = v2.setMagnitude(1);
 
-    if (angle > 20) angle = 20;
+    angleRad = angle * Math.PI / 180;
 
-    v1 = v1.rotate(-angle);
-    v2 = v2.rotate(angle);
+    v1 = v1.rotate(-angleRad);
+    v2 = v2.rotate(angleRad);
 
     alpha = alpha / 2;
-    let beta = Math.PI - alpha - angle;
+    let beta = Math.PI - alpha - angleRad;
     let len = Math.sin(alpha) * ((halfLength + delta) / Math.sin(beta));
 
     v1 = v1.setMagnitude(len);

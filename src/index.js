@@ -18,6 +18,7 @@ svg.setAttributeNS(null, "width", width + "px");
 svg.setAttributeNS(null, "height", height + "px");
 svg.setAttributeNS(null, "id", "starPattern");
 
+let angle, delta;
 
 
 // задание начальных состояний
@@ -92,13 +93,12 @@ function drawSVGGrid() { // creating grid with polygons and lines
 drawSVGGrid();
 
 
-
 function drawSVGhankins() {
   let deltainc = 0;
   let angleinc = 0;
   polygons.forEach((poly, i) => {
     delta = Number(deltaR.value) + deltainc;
-    angle = Math.PI / angleR.value + angleinc;
+    angle = Number(angleR.value) + angleinc;
     const g = document.getElementsByTagName('g')[i];
     const lines = Array.prototype.slice.call(g.childNodes).slice(1);
     let hankinsCoord = poly.getHankins();
