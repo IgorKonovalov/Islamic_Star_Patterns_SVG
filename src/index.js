@@ -1,12 +1,31 @@
-const canvas = document.getElementById('test');
-// const cx = canvas.getContext("2d");
+// SVG
+
+const width = '800';
+const height = '500';
 
 const container = document.getElementById('svgContainer');
 const svgNS = 'http://www.w3.org/2000/svg';
 const svg = document.createElementNS(svgNS, 'svg');
+svg.setAttributeNS(null, "width", width + "px");
+svg.setAttributeNS(null, "height", height + "px");
+svg.setAttributeNS(null, "id", "starPattern");
 
-const width = '800';
-const height = '500';
+// filter!
+
+const defs = document.createElementNS(svgNS, 'defs');
+
+const filter = document.createElementNS(svgNS, 'filter');
+filter.setAttribute("id","f1");
+
+const blur = document.createElementNS(svgNS, 'feGaussianBlur');
+blur.setAttribute('stdDeviation', '1');
+
+filter.appendChild(blur);
+svg.appendChild(filter);
+
+
+
+
 const deltaR = document.getElementById('delta');
 const angleR = document.getElementById('angle');
 const deltaRInc = document.getElementById('deltaInc');
@@ -14,9 +33,6 @@ const angleRInc = document.getElementById('angleInc');
 const selectTiling = document.getElementById('tiling');
 const elementArray = [deltaR, angleR, deltaRInc, angleRInc];
 
-svg.setAttributeNS(null, "width", width + "px");
-svg.setAttributeNS(null, "height", height + "px");
-svg.setAttributeNS(null, "id", "starPattern");
 
 let angle, delta;
 
