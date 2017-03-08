@@ -1,6 +1,6 @@
 // SVG
 
-const width = '800';
+const width = '700';
 const height = '500';
 
 const container = document.getElementById('svgContainer');
@@ -13,7 +13,6 @@ svg.setAttributeNS(null, "id", "starPattern");
 // filter!
 
 const defs = document.createElementNS(svgNS, 'defs');
-
 const filter = document.createElementNS(svgNS, 'filter');
 filter.setAttribute("id","f1");
 
@@ -66,14 +65,18 @@ function hexTiling() {
 
 // hexTiling();
 
-
-
-
 elementArray.forEach((elem)=> {
   elem.addEventListener('mousemove', () => {
     drawSVGhankins();
   })
 })
+
+elementArray.forEach((elem)=> {
+  elem.addEventListener('touchmove', () => {
+    drawSVGhankins();
+  })
+})
+
 
 selectTiling.addEventListener('change', () => {
   let elements = [];

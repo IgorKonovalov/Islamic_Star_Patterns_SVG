@@ -1,17 +1,37 @@
 * {
   box-sizing: border-box;
 }
+
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 700px;
+}
+.controls {
+  display: flex;
+  justify-content: space-between;
+}
+
+.controls span {
+  width: 170px;
+  display: flex;
+}
+
+.controls input{
+  width: 100%;
+  margin-right: 5px;
+}
 .tile polygon {
     pointer-events: visiblePainted;
-    fill: hsla(279, 100%, 4%, 1);
+    fill: hsla(279, 100%, 5%, 1);
     stroke: hsla(0, 100%, 100%, 1);
-    stroke-width: .05;
+    stroke-width: .3;
 
 }
 
 .tile line {
   stroke: hsla(0, 100%, 100%, 1);
-  stroke-width: 2.5;
+  stroke-width: 5;
   stroke-linecap: round;
   stroke-dasharray: 0;
 }
